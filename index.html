@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок 1 · Фонетика · Рабочая тетрадь</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2f7f0; --paper-2:#e7f0e4; --sage:#cadfc5; --sage-deep:#93bb8d;
+    --moss:#5a8a56; --moss-deep:#3d6a3a; --ink:#22301f; --ink-soft:#4d5c4b;
+    --gold:#d5a13c; --coral:#c76d5c; --card:#fbfdfa; --line:#d5e4cf;
+    --shadow:0 6px 22px rgba(61,106,58,.10); --shadow-lg:0 14px 38px rgba(61,106,58,.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);line-height:1.6;overflow-x:hidden;
+    background:radial-gradient(120% 80% at 10% -10%,#eef6ea 0,transparent 55%),radial-gradient(120% 80% at 100% 0,#e3efdf 0,transparent 50%),var(--paper);}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(circle at 20% 30%,rgba(147,187,141,.07) 0 7px,transparent 8px),
+      radial-gradient(circle at 70% 60%,rgba(147,187,141,.05) 0 5px,transparent 6px),
+      radial-gradient(circle at 45% 85%,rgba(147,187,141,.05) 0 9px,transparent 10px);
+    background-size:320px 320px,260px 260px,380px 380px;animation:drift 45s linear infinite}
+  @keyframes drift{to{background-position:320px 320px,-260px 130px,190px -380px}}
+  @media (prefers-reduced-motion:reduce){body::before{animation:none}}
+  .wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 18px 80px}
+
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);background:rgba(242,247,240,.9);
+    border-bottom:1px solid var(--line);margin:0 -18px;padding:9px 18px}
+  .tb-in{max-width:864px;margin:0 auto;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .brand{font-family:'Noto Serif SC',serif;font-weight:700;color:var(--moss-deep);margin-right:auto;display:flex;align-items:center;gap:7px;font-size:1rem}
+  .toggle{border:1px solid var(--sage-deep);background:var(--card);color:var(--moss-deep);font-family:'Nunito';
+    font-weight:700;font-size:.78rem;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:6px}
+  .toggle:hover{background:var(--sage)}
+  .toggle.off{opacity:.5}
+  .toggle i{width:7px;height:7px;border-radius:50%;background:var(--moss);display:block}
+  .toggle.off i{background:var(--ink-soft)}
+  .progress{height:4px;background:var(--sage);border-radius:4px;margin-top:8px;overflow:hidden}
+  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--moss),var(--sage-deep));transition:width .4s}
+
+  /* hero */
+  header.hero{padding:48px 0 18px;text-align:center}
+  .eyebrow{font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.7rem;color:var(--moss)}
+  .hero h1{font-family:'Noto Serif SC',serif;font-size:clamp(1.8rem,4.6vw,2.7rem);margin:.22em 0 .1em;line-height:1.15}
+  .hero p{max-width:580px;margin:12px auto 0;color:var(--ink-soft)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-weight:700;font-size:.85rem;box-shadow:var(--shadow)}
+  .chip b{font-family:'Noto Serif SC',serif;color:var(--moss)}
+
+  /* nav */
+  .nav{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0 0}
+  .nav a{font-size:.8rem;font-weight:700;text-decoration:none;color:var(--moss-deep);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:5px 10px;transition:.15s}
+  .nav a:hover{background:var(--sage);transform:translateY(-1px)}
+
+  /* task */
+  section.task{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:22px;box-shadow:var(--shadow);scroll-margin-top:76px}
+  .th{display:flex;align-items:baseline;gap:11px;margin-bottom:3px;flex-wrap:wrap}
+  .num{font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;background:var(--moss);border-radius:9px;padding:3px 9px;font-size:.85rem;flex:none}
+  .num.book{background:var(--sage-deep)}
+  .task h2{font-family:'Noto Serif SC',serif;font-size:1.18rem;margin:0;font-weight:600}
+  .zh-title{font-family:'Noto Serif SC',serif;color:var(--sage-deep);font-size:.95rem;font-weight:600}
+  .sub{color:var(--ink-soft);font-size:.92rem;margin:4px 0 14px}
+  .hint{background:var(--paper-2);border-left:3px solid var(--sage-deep);border-radius:0 9px 9px 0;padding:9px 13px;font-size:.87rem;color:var(--ink-soft);margin:14px 0 0}
+  .hint b{color:var(--moss-deep)}
+
+  /* audio link */
+  .ap{display:flex;align-items:center;gap:11px;background:var(--paper-2);border:1px solid var(--line);
+    border-radius:13px;padding:11px 14px;flex-wrap:wrap;margin-bottom:14px}
+  .ap .ic{font-size:1.05rem;flex:none;line-height:1}
+  .ap a.play{display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--moss-deep);
+    font-weight:700;font-size:.92rem;transition:.15s}
+  .ap a.play b{font-family:'JetBrains Mono',monospace;font-weight:700;background:var(--card);
+    border:1px solid var(--line);border-radius:7px;padding:2px 8px;font-size:.8rem;transition:.15s}
+  .ap a.play:hover{color:var(--moss)}
+  .ap a.play:hover b{background:var(--sage);border-color:var(--sage-deep)}
+  .ap a.play .ext{color:var(--sage-deep);font-weight:800}
+  .ap a.fld{margin-left:auto;font-size:.75rem;color:var(--ink-soft);text-decoration:none;
+    border-bottom:1px dashed var(--sage-deep);font-weight:600;flex:none}
+  .ap a.fld:hover{color:var(--moss-deep);border-color:var(--moss)}
+  @media(max-width:520px){.ap a.fld{margin-left:0}}
+
+  /* grids */
+  .grid{display:grid;gap:9px;margin-top:12px}
+  .g3{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .g5{grid-template-columns:repeat(auto-fill,minmax(115px,1fr))}
+  .cell{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:9px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .n{font-family:'JetBrains Mono',monospace;color:var(--moss);font-size:.75rem;font-weight:700;flex:none;min-width:22px}
+
+  /* pair choice */
+  .pair{display:flex;gap:5px;flex:1;flex-wrap:wrap}
+  .pair button{flex:1;min-width:52px;border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:6px 5px;
+    cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.92rem;color:var(--ink);transition:.14s}
+  .pair button:hover{border-color:var(--sage-deep);background:var(--paper-2)}
+  .pair button.sel{background:var(--sage);border-color:var(--moss);color:var(--moss-deep);font-weight:700}
+  .pair button.ok{background:var(--moss);border-color:var(--moss);color:#fff}
+  .pair button.bad{background:var(--coral);border-color:var(--coral);color:#fff}
+  .pair button.miss{border-color:var(--moss);border-style:dashed;color:var(--moss);font-weight:700}
+
+  /* inputs */
+  input.f{font-family:'JetBrains Mono',monospace;font-weight:500;text-align:center;font-size:.95rem;
+    border:none;border-bottom:2px solid var(--sage-deep);background:transparent;color:var(--moss-deep);padding:3px 2px;outline:none;transition:.15s;min-width:0}
+  input.f:focus{border-color:var(--moss);background:rgba(202,223,197,.25)}
+  input.f.ok{border-color:var(--moss);color:var(--moss);background:rgba(147,187,141,.16)}
+  input.f.bad{border-color:var(--coral);color:var(--coral);background:rgba(199,109,92,.1)}
+  .fx{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.95rem;color:var(--ink);flex:none}
+  .w3{width:34px}.w4{width:46px}.w6{width:64px}.w8{width:88px}
+
+  /* theory */
+  .theory{background:linear-gradient(160deg,#eef5ea,#fbfdfa);border:1px solid var(--sage-deep)}
+  .theory h2{color:var(--moss-deep)}
+  .syl{display:flex;align-items:stretch;gap:7px;flex-wrap:wrap;margin:12px 0;justify-content:center}
+  .sy{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:9px 13px;text-align:center;min-width:92px;display:flex;flex-direction:column;justify-content:center}
+  .sy b{font-family:'Noto Serif SC',serif;font-size:1.5rem;color:var(--moss-deep);line-height:1.2;display:block}
+  .sy-l{font-family:'Noto Serif SC',serif;font-size:.68rem;color:var(--sage-deep);font-weight:600;display:block;margin-bottom:1px}
+  .sy-t{font-size:.7rem;color:var(--ink-soft);display:block;margin-top:3px;line-height:1.3}
+  .sy-res{background:var(--sage);border-color:var(--moss)}
+  .sy-plus,.sy-eq{display:grid;place-items:center;font-weight:800;color:var(--sage-deep);font-size:1.05rem;flex:none;padding:0 2px}
+  table.tb{width:100%;border-collapse:collapse;margin-top:10px;font-size:.87rem}
+  table.tb th{background:var(--paper-2);color:var(--moss-deep);font-weight:800;text-align:left;padding:7px 10px;font-size:.78rem;border-bottom:1px solid var(--line)}
+  table.tb th:first-child{border-radius:8px 0 0 0}
+  table.tb th:last-child{border-radius:0 8px 0 0}
+  table.tb td{padding:6px 10px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:.85rem}
+  table.tb tr:last-child td{border-bottom:none}
+  table.tb td b{color:var(--moss-deep);font-weight:700}
+  table.tb td.ru{font-family:'Nunito';color:var(--ink-soft)}
+  table.tb tr:hover td{background:var(--paper-2)}
+  @media(max-width:520px){
+    table.tb{font-size:.78rem}
+    table.tb th,table.tb td{padding:5px 6px}
+  }
+
+  /* tone keypad */
+  .kp{position:fixed;z-index:60;background:var(--card);border:1px solid var(--sage-deep);
+    border-radius:13px;box-shadow:var(--shadow-lg);padding:9px;display:none;max-width:min(96vw,430px)}
+  .kp.on{display:block}
+  .kp-row{display:flex;gap:4px;margin-bottom:4px;flex-wrap:wrap}
+  .kp-row:last-of-type{margin-bottom:0}
+  .kp-lbl{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;color:var(--sage-deep);
+    width:15px;display:grid;place-items:center;flex:none}
+  .kp button{border:1px solid var(--line);background:var(--paper);border-radius:7px;min-width:31px;height:31px;
+    cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.98rem;font-weight:600;color:var(--ink);
+    transition:.1s;padding:0 4px;flex:1}
+  .kp button:hover{background:var(--sage);border-color:var(--moss);transform:translateY(-1px)}
+  .kp button:active{transform:translateY(0)}
+  .kp button.act{background:var(--paper-2);color:var(--moss-deep);font-family:'Nunito';font-weight:800;font-size:.72rem}
+  .kp button.act.del{color:var(--coral)}
+  .kp-hd{display:flex;align-items:center;gap:6px;margin-bottom:6px;padding:0 2px}
+  .kp-hd span{font-size:.68rem;font-weight:700;color:var(--ink-soft);margin-right:auto}
+  .kp-hd b{font-family:'JetBrains Mono',monospace;color:var(--moss-deep);font-size:.72rem}
+  .kp-x{border:none;background:transparent;color:var(--ink-soft);cursor:pointer;font-size:.9rem;padding:2px 5px;line-height:1;border-radius:5px}
+  .kp-x:hover{background:var(--paper-2);color:var(--coral)}
+  @media(max-width:520px){
+    .kp{left:6px!important;right:6px;max-width:none;bottom:6px!important;top:auto!important}
+    .kp button{min-width:0;height:34px}
+  }
+
+  /* tone buttons */
+  .tn{display:flex;gap:3px;flex:none}
+  .tn button{border:1.5px solid var(--line);background:var(--card);border-radius:7px;width:28px;height:28px;cursor:pointer;
+    font-weight:700;font-size:.85rem;color:var(--ink-soft);transition:.14s;padding:0;display:grid;place-items:center}
+  .tn button:hover{border-color:var(--sage-deep)}
+  .tn button.sel{background:var(--sage);border-color:var(--moss);color:var(--moss-deep)}
+  .tn button.ok{background:var(--moss);border-color:var(--moss);color:#fff}
+  .tn button.bad{background:var(--coral);border-color:var(--coral);color:#fff}
+  .tn button.miss{border-color:var(--moss);border-style:dashed;color:var(--moss)}
+
+  .check{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .btn{border:none;cursor:pointer;font-family:'Nunito';font-weight:800;font-size:.85rem;padding:9px 16px;border-radius:11px;transition:.16s}
+  .btn.primary{background:var(--moss);color:#fff;box-shadow:var(--shadow)}
+  .btn.primary:hover{background:var(--moss-deep);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--moss-deep);border:1px solid var(--sage-deep)}
+  .btn.ghost:hover{background:var(--sage)}
+  .score{font-weight:800;color:var(--moss-deep);font-size:.88rem}
+  .score.warn{color:var(--coral)}
+
+  .py{color:var(--moss-deep);font-weight:700}
+  .tr{font-size:.8rem;color:var(--ink-soft);font-style:italic}
+  .pinyin-hidden .py-h{visibility:hidden}
+  .trans-hidden .tr{visibility:hidden}
+
+  /* read-along */
+  .read{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:12px}
+  .read .r{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:.92rem;display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+  .read .r .n{font-size:.7rem}
+  .read .r .sep{color:var(--sage-deep)}
+
+  /* culture */
+  .cult{background:linear-gradient(160deg,#fdf8ec,#fbfdfa);border:1px solid var(--gold)}
+  .cult h2{color:#8a6516}
+  .cult .zh{font-family:'Noto Serif SC',serif;color:var(--moss-deep);font-weight:700}
+  .fix{background:#fdf6e9;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;margin-top:9px;font-size:.87rem}
+  .fix b{color:#8a6516}
+
+  /* guide */
+  .guide{background:linear-gradient(160deg,#eaf3e6,#f6faf4);border:1px solid var(--sage-deep)}
+  .guide h2{color:var(--moss-deep)}
+  .tone-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin-top:11px}
+  .tone-card h3{margin:0 0 5px;font-family:'Noto Serif SC',serif;font-size:1.02rem;display:flex;align-items:center;gap:8px}
+  .tone-card h3 .badge{background:var(--moss);color:#fff;border-radius:6px;padding:1px 8px;font-family:'JetBrains Mono';font-size:.75rem;font-weight:700}
+  .tone-card h3 .badge.warn{background:var(--coral)}
+  .tone-card p{margin:5px 0;font-size:.9rem;color:var(--ink-soft)}
+  .tone-card p b{color:var(--ink)}
+  svg.contour{display:block;margin:6px 0;max-width:100%;height:auto}
+  .vid{position:relative;padding-bottom:56.25%;height:0;border-radius:13px;overflow:hidden;margin-top:11px;border:1px solid var(--line)}
+  .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  ul.tips{margin:8px 0 0;padding-left:18px;font-size:.9rem;color:var(--ink-soft)}
+  ul.tips li{margin-bottom:5px}
+  ul.tips b{color:var(--ink)}
+  a.lnk{color:var(--moss);font-weight:700;text-decoration:none;border-bottom:1px solid var(--sage-deep)}
+  a.lnk:hover{background:var(--sage)}
+
+  footer{text-align:center;margin-top:40px;color:var(--ink-soft);font-size:.83rem}
+  footer .zh{font-family:'Noto Serif SC',serif;color:var(--moss);font-size:1.3rem}
+  @media(max-width:520px){
+    .g3,.g4,.g5{grid-template-columns:1fr 1fr}
+    section.task{padding:18px 14px}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="tb-in">
+    <div class="brand">🌿 Урок 1 · Фонетика</div>
+    <button class="toggle" id="tp" onclick="tPin()"><i></i> Пиньинь</button>
+    <button class="toggle" id="tt" onclick="tTr()"><i></i> Перевод</button>
+  </div>
+  <div class="progress"><i id="pb"></i></div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">第一课 · Аудирование и диктант</div>
+    <h1>Инициали <span style="color:var(--moss-deep)">b p d t g k h</span> · финали <span style="color:var(--moss-deep)">a o e</span><br>придыхание и тоны</h1>
+    <p>Все задания и аудиозаписи взяты из рабочей тетради и учебника. Прослушайте запись, отметьте услышанное, вставьте пропущенные элементы и проставьте тоны. В конце — разбор придыхания и справочный гайд по тонам.</p>
+    <div class="chips">
+      <div class="chip">声母 <b>b p d t g k h</b></div>
+      <div class="chip">韵母 <b>a o e</b></div>
+      <div class="chip">送气 <b>придыхание</b></div>
+      <div class="chip">тоны <b>①②③④</b></div>
+    </div>
+    <div class="chip" style="display:inline-block;margin-top:14px;font-weight:600;font-size:.8rem;color:var(--ink-soft)">
+      🎧 Записи открываются на Google Диске в новой вкладке — держите её рядом с уроком
+    </div>
+    <nav class="nav">
+      <a href="#t11">1.1</a><a href="#t12">1.2</a><a href="#t13">1.3</a><a href="#t14">1.4</a>
+      <a href="#t15">1.5</a><a href="#t16">1.6</a><a href="#t17">1.7</a>
+      <a href="#book">Учебник</a><a href="#theory">Придыхание</a><a href="#cult">Культура</a><a href="#guide">Гайд по тонам</a><a href="#vid">Видео</a>
+    </nav>
+  </header>
+
+  <!-- ===== ТЕОРИЯ ===== -->
+  <section class="task theory" id="theory">
+    <div class="th"><span class="num">§</span><h2>Придыхание, а не звонкость</h2><span class="zh-title">送气与不送气</span></div>
+    <p class="sub">Главное различие урока. Русское «б — п» построено на звонкости: в «б» дрожат связки. В китайском <b>все семь инициалей глухие</b>, а различаются они струёй воздуха после размыкания.</p>
+    <div class="syl">
+      <div class="sy"><span class="sy-l">不送气</span><b class="py-h">b d g</b><span class="sy-t">без придыхания<br>как «п/т/к» в <i>спорт, стол, скала</i></span></div>
+      <div class="sy-plus">≠</div>
+      <div class="sy sy-res"><span class="sy-l">送气</span><b class="py-h">p t k</b><span class="sy-t">с придыханием<br>резкий выдох после смычки</span></div>
+    </div>
+    <table class="tb">
+      <thead><tr><th>Пара</th><th>Без придыхания</th><th>С придыханием</th><th>Ориентир для русского уха</th></tr></thead>
+      <tbody>
+        <tr><td class="ru">губные</td><td><b class="py-h">b</b> [p]</td><td><b class="py-h">p</b> [pʰ]</td><td class="ru">b ≈ «п» в «спорт»; p — «п» с сильным выдохом</td></tr>
+        <tr><td class="ru">переднеязычные</td><td><b class="py-h">d</b> [t]</td><td><b class="py-h">t</b> [tʰ]</td><td class="ru">d ≈ «т» в «стол»; t — «т» с выдохом</td></tr>
+        <tr><td class="ru">заднеязычные</td><td><b class="py-h">g</b> [k]</td><td><b class="py-h">k</b> [kʰ]</td><td class="ru">g ≈ «к» в «скала»; k — «к» с выдохом</td></tr>
+        <tr><td class="ru">щелевой</td><td colspan="2"><b class="py-h">h</b> [x]</td><td class="ru">напряжённее русского «х», ближе к украинскому «г»</td></tr>
+      </tbody>
+    </table>
+    <div class="hint">💡 <b>Приём с бумажкой</b> (纸条法 — стандартный в китайской методике). Держите полоску бумаги у губ. На <span class="py py-h">pā, tā, kā</span> она дёргается, на <span class="py py-h">bā, dā, gā</span> — почти не шевелится. Это объективный контроль, а не ощущение.</div>
+    <div class="fix"><b>Типичная ошибка русскоязычных:</b> озвончить b/d/g до русских «б/д/г» и не дать придыхания в p/t/k. Тогда носитель слышит <span class="py py-h">bà</span> <span class="tr">(папа)</span> вместо <span class="py py-h">pà</span> <span class="tr">(бояться)</span>. Разница смыслоразличительная.</div>
+
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:1.05rem;margin:22px 0 0;color:var(--moss-deep)">Финали a · o · e</h2>
+    <table class="tb">
+      <thead><tr><th>Финаль</th><th>Как звучит</th><th>Осторожно</th></tr></thead>
+      <tbody>
+        <tr><td><b class="py-h">a</b></td><td class="ru">широкое открытое «а», рот раскрыт шире русского</td><td class="ru">не редуцировать в «э»</td></tr>
+        <tr><td><b class="py-h">o</b></td><td class="ru">после b/p/m/f реально звучит [uo]: <span class="py py-h">bō</span> ≈ «буо»</td><td class="ru">губы округлены и выдвинуты вперёд</td></tr>
+        <tr><td><b class="py-h">e</b></td><td class="ru">задний неогублённый [ɤ]: <span class="py py-h">gē</span> ≈ «гɤ»</td><td class="ru">это <b>не</b> русское «э»; язык оттянут назад</td></tr>
+      </tbody>
+    </table>
+    <div class="hint">В таблице слогов нет клетки <span class="py py-h">ho</span>: финаль <b>o</b> в путунхуа сочетается только с губными <b>b p m f</b> (плюс междометия вроде <span class="py py-h">ō</span>). Пустые клетки — факт языка, а не пропуск учебника.</div>
+  </section>
+
+  <!-- ===== 1.1 ===== -->
+  <section class="task" id="t11">
+    <div class="th"><span class="num">1.1</span><h2>Отметьте услышанные слоги</h2><span class="zh-title">听录音，选择你听到的音节</span></div>
+    <p class="sub">Прослушайте запись и в каждой паре отметьте прозвучавший слог.</p>
+    <div class="ap" data-audio="l01-01"></div>
+    <div class="grid g3" id="q11"></div>
+    <div class="check"><button class="btn primary" onclick="ckPair('q11')">Проверить</button><button class="btn ghost" onclick="rsPair('q11')">Сбросить</button><span class="score" id="s11"></span></div>
+  </section>
+
+  <!-- ===== 1.2 ===== -->
+  <section class="task" id="t12">
+    <div class="th"><span class="num">1.2</span><h2>Поставьте тоны</h2><span class="zh-title">听录音，标出声调</span></div>
+    <p class="sub">Прослушайте слог и определите его тон: <b>ˉ</b> — ровный, <b>ˊ</b> — восходящий, <b>ˇ</b> — низкий, <b>ˋ</b> — падающий.</p>
+    <div class="ap" data-audio="l01-02"></div>
+    <div class="grid g4" id="q12"></div>
+    <div class="check"><button class="btn primary" onclick="ckTone('q12')">Проверить</button><button class="btn ghost" onclick="rsTone('q12')">Сбросить</button><span class="score" id="s12"></span></div>
+  </section>
+
+  <!-- ===== 1.3 ===== -->
+  <section class="task" id="t13">
+    <div class="th"><span class="num">1.3</span><h2>Поставьте тоны в парах</h2><span class="zh-title">听后，给各组音节标上声调</span></div>
+    <p class="sub">В каждой паре звучит один и тот же слог дважды. Сравнивайте второй с первым — так контраст слышен надёжнее, чем поодиночке.</p>
+    <div class="ap" data-audio="l01-03"></div>
+    <div class="grid g3" id="q13"></div>
+    <div class="check"><button class="btn primary" onclick="ckTone('q13')">Проверить</button><button class="btn ghost" onclick="rsTone('q13')">Сбросить</button><span class="score" id="s13"></span></div>
+  </section>
+
+  <!-- ===== 1.4 ===== -->
+  <section class="task" id="t14">
+    <div class="th"><span class="num">1.4</span><h2>Вставьте инициали</h2><span class="zh-title">听录音，填上声母</span></div>
+    <p class="sub">Финаль с тоном дана. Впишите услышанную инициаль. Главный вопрос здесь один: есть придыхание или нет.</p>
+    <div class="ap" data-audio="l01-04"></div>
+    <div class="grid g5" id="q14"></div>
+    <div class="check"><button class="btn primary" onclick="ckFill('q14')">Проверить</button><button class="btn ghost" onclick="rsFill('q14')">Сбросить</button><span class="score" id="s14"></span></div>
+  </section>
+
+  <!-- ===== 1.5 ===== -->
+  <section class="task" id="t15">
+    <div class="th"><span class="num">1.5</span><h2>Вставьте финали и поставьте тоны</h2><span class="zh-title">听录音，填上韵母和声调</span></div>
+    <p class="sub">Инициаль дана. Впишите финаль <b>со знаком тона</b>: <code>ā</code>, <code>ó</code>, <code>ě</code>. При установке курсора в поле открывается панель вставки знаков тона — китайская раскладка не нужна.</p>
+    <div class="ap" data-audio="l01-05"></div>
+    <div class="grid g5" id="q15"></div>
+    <div class="check"><button class="btn primary" onclick="ckFill('q15')">Проверить</button><button class="btn ghost" onclick="rsFill('q15')">Сбросить</button><span class="score" id="s15"></span></div>
+    <div class="hint">💡 В односложных финалях этого урока знак тона всегда стоит над единственной гласной. Правило приоритета <b>a → o → e → i → u → ü</b> заработает позже, на дифтонгах.</div>
+  </section>
+
+  <!-- ===== 1.6 ===== -->
+  <section class="task" id="t16">
+    <div class="th"><span class="num">1.6</span><h2>Заполните пропуски, поставьте тоны</h2><span class="zh-title">听下面的音节，补充完整</span></div>
+    <p class="sub">Часть слога пропущена: где-то нет инициали, где-то финали, где-то только тона. Записывайте <b>слог целиком</b> — так надёжнее, чем достраивать по кусочку. В подсказке поля показано, что именно дано в тетради.</p>
+    <div class="ap" data-audio="l01-06"></div>
+    <div class="grid g5" id="q16"></div>
+    <div class="check"><button class="btn primary" onclick="ckFill('q16')">Проверить</button><button class="btn ghost" onclick="rsFill('q16')">Сбросить</button><span class="score" id="s16"></span></div>
+    <div class="hint">💡 Это упражнение сводит вместе все три навыка урока сразу: услышать придыхание, различить финаль <b>a / o / e</b> и поставить тон. Если здесь сыплется — возвращайтесь к 1.4 и 1.5 по отдельности, а не «дожимайте» 1.6.</div>
+  </section>
+
+  <!-- ===== 1.7 ===== -->
+  <section class="task" id="t17">
+    <div class="th"><span class="num">1.7</span><h2>Диктант</h2><span class="zh-title">听写</span></div>
+    <p class="sub">Контрольное упражнение: запишите слог целиком со знаком тона — <code>bā</code>, <code>pó</code>, <code>kè</code>. Инициаль, финаль и тон вместе.</p>
+    <div class="ap" data-audio="l01-07"></div>
+    <div class="grid g5" id="q17"></div>
+    <div class="check"><button class="btn primary" onclick="ckFill('q17')">Проверить</button><button class="btn ghost" onclick="rsFill('q17')">Сбросить</button><span class="score" id="s17"></span></div>
+  </section>
+
+  <!-- ===== УЧЕБНИК ===== -->
+  <section class="task" id="book">
+    <div class="th"><span class="num book">跟读</span><h2>Учебник · Повторяйте за диктором</h2><span class="zh-title">跟读下面的音节</span></div>
+    <p class="sub">Не читайте глазами молча: слух ставится только через собственную артикуляцию. Повторяйте каждый ряд по 2–3 раза. В плеере Google Диска можно замедлить запись: меню ⋮ → «Скорость воспроизведения».</p>
+
+    <div class="th" style="margin-top:18px"><span class="num book">1.1</span><h2 style="font-size:1rem">Слоги во всех тонах</h2></div>
+    <div class="ap" data-audio="k01-02"></div>
+    <div class="read py-h" id="r1"></div>
+
+    <div class="th" style="margin-top:22px"><span class="num book">1.2</span><h2 style="font-size:1rem">Разница в инициалях</h2><span class="zh-title">注意声母的不同</span></div>
+    <p class="sub">Тон и финаль одинаковые — весь фокус на придыхании.</p>
+    <div class="ap" data-audio="k01-03"></div>
+    <div class="read py-h" id="r2"></div>
+
+    <div class="th" style="margin-top:22px"><span class="num book">1.3</span><h2 style="font-size:1rem">Разница в финалях</h2><span class="zh-title">注意韵母的不同</span></div>
+    <p class="sub">Следите за губами: на <span class="py py-h">o</span> округляются, на <span class="py py-h">e</span> растянуты, язык отодвинут назад.</p>
+    <div class="ap" data-audio="k01-04"></div>
+    <div class="read py-h" id="r3"></div>
+
+    <div class="th" style="margin-top:22px"><span class="num book">1.4</span><h2 style="font-size:1rem">Разница в тонах</h2><span class="zh-title">注意声调的不同</span></div>
+    <p class="sub">Инициаль и финаль неизменны — меняется только мелодия. Рисуйте контур тона рукой в воздухе.</p>
+    <div class="ap" data-audio="k01-05"></div>
+    <div class="read py-h" id="r4"></div>
+  </section>
+
+  <!-- ===== КУЛЬТУРА ===== -->
+  <section class="task cult" id="cult">
+    <div class="th"><span class="num" style="background:var(--gold)">文化</span><h2>Слоги урока в китайской жизни</h2><span class="zh-title">语言与文化</span></div>
+    <p class="sub">Пока это только звуки — но за каждым уже стоит слово, а за словом культура.</p>
+    <table class="tb">
+      <thead><tr><th>Слог</th><th>Иероглиф</th><th>Значение (БКРС)</th></tr></thead>
+      <tbody>
+        <tr><td><b class="py-h">bā</b></td><td class="zh">八</td><td class="ru tr">восемь</td></tr>
+        <tr><td><b class="py-h">bá</b></td><td class="zh">拔</td><td class="ru tr">выдёргивать, вытаскивать</td></tr>
+        <tr><td><b class="py-h">bǎ</b></td><td class="zh">把</td><td class="ru tr">рукоятка; служебное слово 把</td></tr>
+        <tr><td><b class="py-h">bà</b></td><td class="zh">爸</td><td class="ru tr">папа, отец</td></tr>
+        <tr><td><b class="py-h">dà</b></td><td class="zh">大</td><td class="ru tr">большой</td></tr>
+        <tr><td><b class="py-h">tā</b></td><td class="zh">他</td><td class="ru tr">он</td></tr>
+        <tr><td><b class="py-h">gē</b></td><td class="zh">哥</td><td class="ru tr">старший брат</td></tr>
+        <tr><td><b class="py-h">hē</b></td><td class="zh">喝</td><td class="ru tr">пить</td></tr>
+        <tr><td><b class="py-h">kě</b></td><td class="zh">渴</td><td class="ru tr">испытывать жажду</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tone-card">
+      <h3><span class="badge">八</span> Почему восьмёрка стоит денег</h3>
+      <p><span class="zh">八</span> <span class="py py-h">bā</span> — самая любимая цифра в Китае: в кантонском и южных диалектах она созвучна <span class="zh">发</span> <span class="py py-h">fā</span> из <span class="zh">发财</span> <span class="py py-h">fācái</span> <span class="tr">«разбогатеть»</span>. Отсюда автомобильные номера и телефоны с восьмёрками за отдельную плату и открытие Олимпиады в Пекине 8 августа 2008 года в 8 часов 8 минут 8 секунд вечера. А <span class="zh">四</span> <span class="py py-h">sì</span> «четыре» созвучно <span class="zh">死</span> <span class="py py-h">sǐ</span> <span class="tr">«смерть»</span> — в части домов нет 4-го этажа, как в западных иногда нет 13-го. Фонетика здесь работает как суеверие, реклама и цена квартиры одновременно.</p>
+    </div>
+
+    <div class="tone-card">
+      <h3><span class="badge">爸爸</span> Удвоение и нейтральный тон</h3>
+      <p><span class="zh">爸爸</span> <span class="py py-h">bàba</span> <span class="tr">«папа»</span>: второй слог теряет тон — это <span class="zh">轻声</span> <span class="py py-h">qīngshēng</span>, нейтральный тон. Модель типична для терминов родства: <span class="zh">妈妈</span> <span class="py py-h">māma</span>, <span class="zh">哥哥</span> <span class="py py-h">gēge</span>, <span class="zh">弟弟</span> <span class="py py-h">dìdi</span>.</p>
+      <p>Система родства в китайском дробнее русской: <span class="zh">哥哥</span> — только <b>старший</b> брат, у младшего своё слово <span class="zh">弟弟</span>. Спросить «у тебя есть брат?» по-китайски нельзя, не решив сначала, старший он или младший. Язык заставляет думать об иерархии возраста ещё до того, как вы начали фразу.</p>
+    </div>
+
+    <div class="tone-card">
+      <h3><span class="badge">喝</span> Пить и хотеть пить</h3>
+      <p>Два слога этого урока дают бытовую пару: <span class="zh">喝</span> <span class="py py-h">hē</span> <span class="tr">«пить»</span> и <span class="zh">渴</span> <span class="py py-h">kě</span> <span class="tr">«испытывать жажду»</span>. Отсюда первая живая фраза, которую вы сможете сказать уже к третьему уроку: <span class="zh">我渴了，喝茶吧。</span> <span class="py py-h">Wǒ kě le, hē chá ba.</span> <span class="tr">«Пить хочу, давай чаю»</span>. Заметьте: в Китае предложение попить по умолчанию означает чай или <b>горячую воду</b> (<span class="zh">热水</span> <span class="py py-h">rèshuǐ</span>) — привычка со стаканом кипятка в термосе живёт до сих пор, и в поездах для этого стоят титаны.</p>
+    </div>
+  </section>
+
+  <!-- ===== ГАЙД ПО ТОНАМ ===== -->
+  <section class="task guide" id="guide">
+    <div class="th"><span class="num">声调</span><h2>Гайд по тонам на слоге ba</h2><span class="zh-title">四声</span></div>
+    <p class="sub">Тон лежит поверх слога целиком. Ошибка в тоне — другое слово, а не «акцент».</p>
+
+    <svg class="contour" viewBox="0 0 320 120" role="img" aria-label="Контуры четырёх тонов">
+      <g stroke="#d5e4cf" stroke-width="1">
+        <line x1="10" y1="20" x2="310" y2="20"/><line x1="10" y1="50" x2="310" y2="50"/>
+        <line x1="10" y1="80" x2="310" y2="80"/><line x1="10" y1="105" x2="310" y2="105"/>
+      </g>
+      <g fill="none" stroke="#5a8a56" stroke-width="3" stroke-linecap="round">
+        <path d="M20 20 L70 20"/>
+        <path d="M100 80 L150 20"/>
+        <path d="M180 55 Q195 105 210 95 Q225 85 240 35"/>
+        <path d="M270 20 L305 105"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="#3d6a3a" font-weight="700">
+        <text x="30" y="14">bā 55</text><text x="108" y="14">bá 35</text>
+        <text x="180" y="30">bǎ 214</text><text x="264" y="14">bà 51</text>
+      </g>
+    </svg>
+
+    <div class="tone-card">
+      <h3><span class="badge">1 · ˉ</span> Ровный высокий · 55</h3>
+      <p><span class="py py-h">bā</span> <span class="zh" style="font-family:'Noto Serif SC',serif">八</span> <span class="tr">восемь</span>. Держите высоту ровно, как долгую ноту. Русская интонация тянет вниз к концу слова — с этим и боремся.</p>
+      <div class="fix"><b>Диагностика:</b> если конец слога «просел» — вы сказали что-то между 1-м и 4-м. Пропойте на одной ноте.</div>
+    </div>
+    <div class="tone-card">
+      <h3><span class="badge">2 · ˊ</span> Восходящий · 35</h3>
+      <p><span class="py py-h">bá</span> <span class="zh" style="font-family:'Noto Serif SC',serif">拔</span> <span class="tr">выдёргивать</span>. Как русский переспрос: «Что?..» с удивлением. Начало — средняя высота, конец — верх.</p>
+      <div class="fix"><b>Диагностика:</b> частая ошибка — начать слишком низко, тогда 2-й тон путается с 3-м.</div>
+    </div>
+    <div class="tone-card">
+      <h3><span class="badge">3 · ˇ</span> Низкий с провалом · 214</h3>
+      <p><span class="py py-h">bǎ</span> <span class="zh" style="font-family:'Noto Serif SC',serif">把</span> <span class="tr">рукоятка; служебное 把</span>. Главное в нём — <b>низ</b>, а не «галочка». В речи он почти всегда реализуется как полутретий: низкий и без подъёма в конце. Полную «галочку» слышно только на изолированном слоге и в конце фразы.</p>
+      <div class="fix"><b>Диагностика:</b> если у вас получается заметный подъём в конце каждого 3-го тона — вы звучите неестественно. Держите голос внизу, будто устали.</div>
+    </div>
+    <div class="tone-card">
+      <h3><span class="badge warn">4 · ˋ</span> Резко падающий · 51</h3>
+      <p><span class="py py-h">bà</span> <span class="zh" style="font-family:'Noto Serif SC',serif">爸</span> <span class="tr">папа</span>. Короткий, энергичный, сверху вниз — как русское раздражённое «Всё!». Падать нужно до самого низа.</p>
+      <div class="fix"><b>Диагностика:</b> вялый 4-й тон, не дошедший до низа, слышится как 1-й.</div>
+    </div>
+    <ul class="tips">
+      <li><b>Слушайте парами, а не поодиночке.</b> Абсолютную высоту человек различает плохо, контраст — хорошо. Поэтому упражнение 1.3 методически важнее, чем 1.2.</li>
+      <li><b>Рука работает вместе с голосом.</b> Рисуйте контур в воздухе — моторика закрепляет мелодию быстрее, чем зрение.</li>
+      <li><b>Записывайте себя.</b> Собственный тон в голове всегда «правильный»; на записи слышно, где он поплыл.</li>
+    </ul>
+  </section>
+
+  <!-- ===== ВИДЕО ===== -->
+  <section class="task" id="vid">
+    <div class="th"><span class="num">видео</span><h2>Видеоматериалы</h2><span class="zh-title">视频</span></div>
+    <p class="sub">Смотрите после упражнений: видео закрепит артикуляцию, которую вы уже слышали и повторяли.</p>
+    <div class="vid"><iframe src="https://www.youtube.com/embed/FlaJ12tmtu4?list=PLifxDgDNhVDrXEjBHpNC350ms6gEvBH2j&start=1084" title="Фонетика" allowfullscreen loading="lazy"></iframe></div>
+    <p class="sub" style="margin-top:8px">Основной разбор фонетики из вашего плейлиста, с тайм-кода 18:04.</p>
+    <div class="vid"><iframe src="https://www.youtube.com/embed/mc6z87vzKR0" title="Вся китайская фонетика за 19 минут" allowfullscreen loading="lazy"></iframe></div>
+    <p class="sub" style="margin-top:8px">Вся система (тоны, инициали, финали) компактно, одним заходом — хорошо для повторения перед диктантом.</p>
+    <div class="vid"><iframe src="https://www.youtube.com/embed/OdBEACzKtws" title="Пиньинь: важные знания" allowfullscreen loading="lazy"></iframe></div>
+    <p class="sub" style="margin-top:8px">Правила записи пиньиня и постановки знака тона, объясняет носитель.</p>
+    <div class="hint">🎧 Тренажёр-таблица пиньиня с озвучкой носителем — кликайте по слогу:
+      <a class="lnk" href="https://www.chineseplus.club/start/pinyin-chart/" target="_blank" rel="noopener">chineseplus.club</a>.
+      Пройдите всю строку <b>b p d t g k h × a o e</b> перед диктантом 1.7.</div>
+  </section>
+
+  <footer>
+    <div class="zh">加油！</div>
+    Урок 1 · инициали b p d t g k h · финали a o e
+  </footer>
+</div>
+
+<!-- ===== TONE KEYPAD ===== -->
+<div class="kp" id="kp">
+  <div class="kp-hd"><span>Вставка знаков тона</span><b id="kpF"></b><button class="kp-x" onclick="kpHide()">✕</button></div>
+  <div class="kp-row"><span class="kp-lbl">a</span>
+    <button>a</button><button>ā</button><button>á</button><button>ǎ</button><button>à</button></div>
+  <div class="kp-row"><span class="kp-lbl">o</span>
+    <button>o</button><button>ō</button><button>ó</button><button>ǒ</button><button>ò</button></div>
+  <div class="kp-row"><span class="kp-lbl">e</span>
+    <button>e</button><button>ē</button><button>é</button><button>ě</button><button>è</button></div>
+  <div class="kp-row"><span class="kp-lbl">声</span>
+    <button>b</button><button>p</button><button>d</button><button>t</button><button>g</button><button>k</button><button>h</button></div>
+  <div class="kp-row">
+    <button class="act del" data-a="bs">⌫</button><button class="act del" data-a="cl">Очистить</button><button class="act" data-a="nx">Далее →</button></div>
+</div>
+
+<script>
+/* ====== AUDIO ======
+   Записи не хранятся в репозитории: плееры заменены ссылками на Google Диск.
+   Ссылка открывает файл в новой вкладке во встроенном плеере Google.
+   Условие одно: у папки должен стоять доступ «Все, у кого есть ссылка → Читатель». */
+const FOLDER={
+  k:"https://drive.google.com/drive/folders/1acJxL0tyAKc5rwFVEWAE8CQuCNpdmH2K",
+  l:"https://drive.google.com/drive/folders/1g7bxFgm-yoLRIL716EZiSab2OjGoOLju"
+};
+const IDS={
+  "k01-02":"1Wy46iAeohkaSWlduLGOMQBGFw8xSN85k",
+  "k01-03":"1St1XEnvFyIvLEuiK-YQQU4ejNoXL1jwt",
+  "k01-04":"1mncdzvXm3TnKKazWYmQqDBw2rsCuGUsQ",
+  "k01-05":"1_7w7ZKAOinuKuOogKEUc5gwFj-5aXHaZ",
+  "l01-01":"19KOuma7z9ZRmeeGfv_IeEtJylrdlFktc",
+  "l01-02":"14ObEmafktIvae1oP0_gE8PvZSisH2beY",
+  "l01-03":"1V2Zg06MKP8PKCKhp5mvAFy3uue_PQmmI",
+  "l01-04":"1XirAApCk4Qe8xeEqxs7wO_AO4BeYoZxU",
+  "l01-05":"1tR_ZS_L2kI3hCg6xKODEMeVBGWWklYxc",
+  "l01-06":"1xJfWhbQH-B47xGot4Lp0ZTrHlYZsmMhc",
+  "l01-07":"1lwsO3fmjnuTcQHGcaqry_MZoyHtxCumo"
+};
+
+let pOn=true,trOn=true;
+function tPin(){pOn=!pOn;document.body.classList.toggle('pinyin-hidden',!pOn);document.getElementById('tp').classList.toggle('off',!pOn)}
+function tTr(){trOn=!trOn;document.body.classList.toggle('trans-hidden',!trOn);document.getElementById('tt').classList.toggle('off',!trOn)}
+
+/* ====== DATA · рабочая тетрадь ====== */
+const D11=[["bǎ","bá","bá"],["pà","bà","pà"],["tā","tǎ","tā"],["dà","tà","dà"],["gě","gǎ","gǎ"],["gě","gè","gě"],["hā","hǎ","hā"],["kā","kǎ","kā"],["pò","bò","bò"],["bà","bō","bà"],["bǒ","bō","bǒ"],["bò","hè","hè"],["hé","hè","hé"],["dé","tè","dé"],["kē","ké","kē"],["kě","kè","kè"]];
+const D12=[["ba",3],["bo",2],["pa",1],["po",2],["da",4],["ta",1],["ga",4],["he",2],["ge",1],["ge",3],["ka",1],["ke",3],["ha",2],["po",4],["de",2],["te",4]];
+const D13=[["ba",3,3],["bo",2,3],["pa",1,2],["po",2,2],["da",3,4],["ta",3,3],["ga",3,4],["he",4,2],["ge",1,4],["ka",3,3],["ke",3,4],["ha",3,2]];
+const D14=[["ǎ","b","bǎ"],["à","p","pà"],["é","d","dé"],["è","t","tè"],["ě","k","kě"],["ǎ","h","hǎ"],["ě","g","gě"],["ó","b","bó"],["ò","p","pò"],["ǎ","k","kǎ"]];
+const D15=[["b","ā"],["b","ǎ"],["p","ō"],["d","é"],["d","ē"],["d","ǎ"],["d","á"],["t","à"],["t","ǎ"],["t","è"],["t","ā"],["g","á"],["g","ǎ"],["g","é"],["g","è"],["k","ā"],["k","ǎ"],["k","è"],["k","ě"],["k","ē"]];
+const D16=[["ga","gā"],["p__","pá"],["__ē","gē"],["ga","gá"],["__à","gà"],["da","dà"],["__è","gè"],["__ā","pā"],["__á","bá"],["__ō","pō"],["b__","bǒ"],["__à","bà"],["p__","pó"],["p__","pà"],["k__","kǎ"],["bo","bò"],["p__","pò"],["d__","dá"],["d__","dé"],["ta","tà"]];
+const D17=["bā","pá","dà","tà","tǎ","hā","kā","hǎ","gǎ","dǎ","kē","hē","gé","hé","tè","hè","kè","gè","bō","pō"];
+
+/* ====== DATA · учебник (跟读) ====== */
+const R1=[["bā","bá","bǎ","bà"],["pā","pá","pà"],["dā","dá","dǎ","dà"],["tā","tǎ","tà"],
+["gā","gá","gǎ","gà"],["kā","kǎ"],["hā","há","hǎ","hà"],["bō","bó","bǒ","bò"],
+["pō","pó","pǒ","pò"],["gē","gé","gě","gè"],["kē","ké","kě","kè"],["hē","hé","hè"]];
+const R2=[["bā","tā"],["bá","pá"],["gǎ","kǎ"],["dà","tà"],["hā","kā"],["há","gá"],["gǎ","hǎ"],["dà","gà"],
+["gē","kē"],["gé","hé"],["kě","gě"],["tè","kè"],["bō","pō"],["bó","pó"],["dǎ","tǎ"],["tè","gè"]];
+const R3=[["bā","bō"],["bá","bó"],["bǎ","bǒ"],["bà","bò"],["gā","gē"],["gá","gé"],["gǎ","gě"],["gà","gè"],
+["pā","pō"],["pá","pó"],["kǎ","kě"],["pà","pò"],["kā","kē"],["dá","dé"],["gǎ","gě"],["hè","hà"]];
+const R4=[["bā","bǎ"],["bá","bà"],["bō","bò"],["bó","bǒ"],["pā","pá"],["pá","pà"],["pō","pó"],["pǒ","pò"],
+["dá","dā"],["dǎ","dà"],["tǎ","tā"],["tǎ","tà"],["hà","há"],["gǎ","gà"],["gá","gā"],["gē","gé"],
+["gě","gè"],["kā","kǎ"],["ké","kě"],["hé","hē"]];
+
+const TM={1:"ˉ",2:"ˊ",3:"ˇ",4:"ˋ",0:"·"};
+
+/* ====== RENDER ====== */
+function r11(){document.getElementById('q11').innerHTML=D11.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><div class="pair py-h" data-ans="${x[2]}">
+   <button onclick="pk(this)">${x[0]}</button><button onclick="pk(this)">${x[1]}</button></div></div>`).join('')}
+function r12(){document.getElementById('q12').innerHTML=D12.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><span class="fx py-h">${x[0]}</span>
+   <div class="tn" data-ans="${x[1]}" style="margin-left:auto">${[1,2,3,4].map(t=>`<button onclick="pk(this)">${TM[t]}</button>`).join('')}</div></div>`).join('')}
+function r13(){document.getElementById('q13').innerHTML=D13.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span>
+   <span class="fx py-h">${x[0]}</span><div class="tn" data-ans="${x[1]}">${[1,2,3,4].map(t=>`<button onclick="pk(this)">${TM[t]}</button>`).join('')}</div>
+   <span class="fx" style="opacity:.4">—</span>
+   <span class="fx py-h">${x[0]}</span><div class="tn" data-ans="${x[2]}">${[1,2,3,4].map(t=>`<button onclick="pk(this)">${TM[t]}</button>`).join('')}</div>
+   </div>`).join('')}
+function r14(){document.getElementById('q14').innerHTML=D14.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><input class="f w3" data-ans="${x[1]}" maxlength="2"><span class="fx py-h">${x[0]}</span></div>`).join('')}
+function r15(){document.getElementById('q15').innerHTML=D15.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><span class="fx py-h">${x[0]}</span><input class="f w4" data-ans="${x[1]}" maxlength="3"></div>`).join('')}
+function r16(){document.getElementById('q16').innerHTML=D16.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><input class="f w6" data-ans="${x[1]}" maxlength="4" placeholder="${x[0].replace(/_/g,'·')}"></div>`).join('')}
+function r17(){document.getElementById('q17').innerHTML=D17.map((x,i)=>
+  `<div class="cell"><span class="n">${i+1}</span><input class="f w6" data-ans="${x}" maxlength="4"></div>`).join('')}
+function rd(id,rows,sep){document.getElementById(id).innerHTML=rows.map((r,i)=>
+  `<div class="r"><span class="n">${i+1}</span>${r.map(s=>`<span>${s}</span>`).join(sep?'<span class="sep">—</span>':'')}</div>`).join('')}
+r11();r12();r13();r14();r15();r16();r17();
+rd('r1',R1,false);rd('r2',R2,true);rd('r3',R3,true);rd('r4',R4,true);
+
+/* ====== INTERACTION ====== */
+function pk(b){const g=b.parentElement;g.querySelectorAll('button').forEach(x=>x.classList.remove('sel','ok','bad','miss'));
+  b.classList.add('sel');g.dataset.pick=b.textContent}
+
+function ckPair(id){let ok=0,tot=0;
+  document.querySelectorAll('#'+id+' .pair').forEach(g=>{tot++;const p=g.dataset.pick;if(!p)return;
+    const good=p===g.dataset.ans;
+    g.querySelectorAll('button').forEach(b=>{b.classList.remove('sel');
+      if(b.textContent===p)b.classList.add(good?'ok':'bad');
+      if(!good&&b.textContent===g.dataset.ans)b.classList.add('miss')});
+    if(good)ok++});
+  sc(id,ok,tot)}
+function rsPair(id){document.querySelectorAll('#'+id+' .pair').forEach(g=>{delete g.dataset.pick;
+  g.querySelectorAll('button').forEach(b=>b.classList.remove('sel','ok','bad','miss'))});clr(id)}
+
+function ckTone(id){let ok=0,tot=0;
+  document.querySelectorAll('#'+id+' .tn').forEach(g=>{tot++;const p=g.dataset.pick;if(!p)return;
+    const good=p===TM[g.dataset.ans];
+    g.querySelectorAll('button').forEach(b=>{b.classList.remove('sel');
+      if(b.textContent===p)b.classList.add(good?'ok':'bad');
+      if(!good&&b.textContent===TM[g.dataset.ans])b.classList.add('miss')});
+    if(good)ok++});
+  sc(id,ok,tot)}
+function rsTone(id){document.querySelectorAll('#'+id+' .tn').forEach(g=>{delete g.dataset.pick;
+  g.querySelectorAll('button').forEach(b=>b.classList.remove('sel','ok','bad','miss'))});clr(id)}
+
+function nrm(s){return (s||'').trim().toLowerCase().replace(/v/g,'ü').replace(/\s/g,'')}
+function ckFill(id){let ok=0;const ins=[...document.querySelectorAll('#'+id+' input')];
+  ins.forEach(i=>{const good=nrm(i.value)===nrm(i.dataset.ans);
+    i.classList.toggle('ok',good);i.classList.toggle('bad',!good&&i.value.trim()!=='');
+    if(!good&&i.value.trim()!=='')i.title='Ответ: '+i.dataset.ans;
+    if(good)ok++});
+  sc(id,ok,ins.length)}
+function rsFill(id){document.querySelectorAll('#'+id+' input').forEach(i=>{i.value='';i.classList.remove('ok','bad');i.title=''});clr(id)}
+
+function sc(id,ok,tot){const e=document.getElementById('s'+id.slice(1));
+  e.textContent=ok+' / '+tot+' верно';e.classList.toggle('warn',ok<tot);prog()}
+function clr(id){const e=document.getElementById('s'+id.slice(1));if(e){e.textContent='';e.classList.remove('warn')}prog()}
+function prog(){const d=[...document.querySelectorAll('.score')].filter(s=>s.textContent).length;
+  document.getElementById('pb').style.width=Math.min(100,d/7*100)+'%'}
+
+/* ====== TONE KEYPAD (1.4 / 1.5 / 1.6 / 1.7) ====== */
+const KP=document.getElementById('kp'), KPF=document.getElementById('kpF');
+let kpT=null;
+const KP_IDS=['q14','q15','q16','q17'];
+
+function kpPos(inp){
+  const r=inp.getBoundingClientRect();
+  KP.classList.add('on');
+  const kw=KP.offsetWidth, kh=KP.offsetHeight;
+  if(window.innerWidth<=520) return;
+  let l=r.left+r.width/2-kw/2;
+  l=Math.max(8,Math.min(l,window.innerWidth-kw-8));
+  let t=r.bottom+8;
+  if(t+kh>window.innerHeight-8) t=r.top-kh-8;
+  if(t<8) t=8;
+  KP.style.left=l+'px'; KP.style.top=t+'px';
+}
+function kpShow(inp){
+  kpT=inp;
+  const cell=inp.closest('.cell');
+  KPF.textContent=cell?('№ '+cell.querySelector('.n').textContent):'';
+  kpPos(inp);
+}
+function kpHide(){KP.classList.remove('on');kpT=null}
+
+function kpIns(ch){
+  if(!kpT)return;
+  const s=kpT.selectionStart??kpT.value.length, e=kpT.selectionEnd??kpT.value.length;
+  const max=+kpT.getAttribute('maxlength')||99;
+  const nv=kpT.value.slice(0,s)+ch+kpT.value.slice(e);
+  if(nv.length>max){kpT.focus();return}
+  kpT.value=nv;
+  const p=s+ch.length;
+  kpT.focus(); kpT.setSelectionRange(p,p);
+  kpT.classList.remove('ok','bad');
+}
+function kpBS(){
+  if(!kpT)return;
+  const s=kpT.selectionStart??kpT.value.length, e=kpT.selectionEnd??kpT.value.length;
+  if(s===e&&s===0){kpT.focus();return}
+  const cut=s===e?s-1:s;
+  kpT.value=kpT.value.slice(0,cut)+kpT.value.slice(e);
+  kpT.focus(); kpT.setSelectionRange(cut,cut);
+  kpT.classList.remove('ok','bad');
+}
+function kpNext(){
+  if(!kpT)return;
+  const all=[...document.querySelectorAll(KP_IDS.map(i=>'#'+i+' input').join(','))];
+  const i=all.indexOf(kpT);
+  const n=all[i+1];
+  if(n){n.focus();n.select?.();kpShow(n)}else kpHide();
+}
+KP.addEventListener('mousedown',e=>{
+  const b=e.target.closest('button');
+  if(!b||b.classList.contains('kp-x'))return;
+  e.preventDefault();
+  const a=b.dataset.a;
+  if(a==='bs')kpBS();
+  else if(a==='cl'){if(kpT){kpT.value='';kpT.classList.remove('ok','bad');kpT.focus()}}
+  else if(a==='nx')kpNext();
+  else kpIns(b.textContent);
+});
+KP_IDS.forEach(id=>{
+  document.querySelectorAll('#'+id+' input').forEach(inp=>{
+    inp.addEventListener('focus',()=>kpShow(inp));
+    inp.addEventListener('click',()=>kpShow(inp));
+    inp.addEventListener('keydown',e=>{if(e.key==='Escape')kpHide();
+      if(e.key==='Enter'){e.preventDefault();kpNext()}});
+  });
+});
+document.addEventListener('mousedown',e=>{
+  if(KP.contains(e.target))return;
+  if(e.target.closest(KP_IDS.map(i=>'#'+i+' input').join(',')))return;
+  kpHide();
+});
+window.addEventListener('scroll',()=>{if(kpT)kpPos(kpT)},{passive:true});
+window.addEventListener('resize',()=>{if(kpT)kpPos(kpT)});
+
+/* ====== ССЫЛКИ НА ЗАПИСИ ====== */
+document.querySelectorAll('.ap').forEach(ap=>{
+  const key=ap.dataset.audio, id=IDS[key];
+  const folder=FOLDER[key[0]];
+  ap.innerHTML=`<span class="ic">🎧</span>
+    <a class="play" href="https://drive.google.com/file/d/${id}/view" target="_blank" rel="noopener">
+      Слушать запись <b>${key}.mp3</b> <span class="ext">↗</span></a>
+    <a class="fld" href="${folder}" target="_blank" rel="noopener">все записи урока</a>`;
+});
+
+</script>
+</body>
+</html>
